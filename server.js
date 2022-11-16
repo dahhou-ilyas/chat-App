@@ -3,7 +3,7 @@ const express=require('express')
 const app=express();
 const http =require('http')
 const socketio=require('socket.io');
-const { on } = require('events');
+
 const formatMessage=require('./tools/message')
 const {userJoin,getCurentuser}=require('./tools/users')
 
@@ -24,18 +24,18 @@ const Admin='Admin'
 io.on('connection',socket=>{
     socket.on('joinRoom',({username ,room})=>{
         const user=userJoin(socket.id,username,room)
-
-        socket.join(user.room)
+        
         // welcom current user
         socket.emit('message',formatMessage(Admin,'welcome to chat record'))
 
         // broadcast if a user connect
-        socket.broadcast.emit('message',formatMessage(Admin,'A user join a chat'));
+        socket.broadcast.to(user.room).emit('message',formatMessage(Admin,`${user.username} join a chat`));
     
     })
     //listen for chatMessage
     socket.on('chatMessage',(msg)=>{
-        io.emit('message',formatMessage('USER',msg));
+        const user=getCurentuser(socket.id);
+        io.emit('message',formatMessage(user,msg));
     });
 
     // runs when client disconnect
