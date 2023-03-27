@@ -2,6 +2,12 @@
 
 Realtime chat app with websockets using Node.js, Express and Socket.io with Vanilla JS on the frontend with a custom UI
 
+## Features
+
+- Real-time messaging
+- Multiple users can join a chat room
+- Displays the list of active users in the chat room
+
 ## Usage
 ```
 npm install
