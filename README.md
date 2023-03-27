@@ -1,8 +1,12 @@
 # chat-App
 
-I created this app use nodejs and socket.io
+Realtime chat app with websockets using Node.js, Express and Socket.io with Vanilla JS on the frontend with a custom UI
 
-###To run this app 
- 1-- npm install
- 2-- nodemon server.js
- 
+## Usage
+```
+npm install
+nodemon server.js
+
+
+Go to localhost:3000
+```
